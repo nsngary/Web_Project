@@ -126,37 +126,38 @@
         </section>
         <!-- 專案作品輪播區塊 -->
         <section class="projects-section">
-            <h2>專案作品 Portfolio</h2>
+            <div class="card project-card">
+                <h2>專案作品 Portfolio</h2>
             <div class="swiper">
                 <div class="swiper-wrapper">
                     <!-- 專案 Slide 1 -->
                     <div class="swiper-slide">
-                        <div class="card project-card">
-                            <img src="project1.jpg" alt="Project 1 Screenshot" />
+                        
+                            <img src="./image/3.jpeg" alt="Project 1 Screenshot" />
                             <h3>專案一：網站設計</h3>
                             <p>此專案為一個響應式網站，包括首頁、關於頁和聯絡表單，使用HTML/CSS/JS開發。</p>
                             <div class="skill-bar"><div class="fill" style="width: 80%;">80%</div></div>
-                            <p>開發進度：80%</p>
-                        </div>
+                            
+                        
                     </div>
                     <!-- 專案 Slide 2 -->
                     <div class="swiper-slide">
-                        <div class="card project-card">
-                            <img src="project2.jpg" alt="Project 2 Screenshot" />
+                        
+                            <img src="./image/1.jpeg" alt="Project 2 Screenshot" />
                             <h3>專案二：資料分析</h3>
                             <p>使用 Python 製作的資料分析專案，透過圖表視覺化呈現商業數據，提供決策參考。</p>
                             <div class="skill-bar"><div class="fill" style="width: 60%;">60%</div></div>
-                            <p>開發進度：60%</p>
-                        </div>
+                            
+                        
                     </div>
                     <!-- 專案 Slide 3 -->
                     <div class="swiper-slide">
-                        <div class="card project-card">
-                            <img src="project3.jpg" alt="Project 3 Screenshot" />
+                        
+                            <img src="./image/5.jpeg" alt="Project 3 Screenshot" />
                             <h3>專案三：行動應用</h3>
                             <p>一款採用 React Native 開發的行動應用程式，可在 iOS/Android 裝置上順暢運行。</p>
                             <div class="skill-bar"><div class="fill" style="width: 90%;">90%</div></div>
-                            <p>開發進度：90%</p>
+
                         </div>
                     </div>
                 </div>
@@ -164,11 +165,13 @@
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
-            </div>
+                </div>
+            
         </section>
         <!-- 原有內容區塊，轉為卡片樣式呈現 -->
+    
         <section class="about-section">
-            <div class="card">
+            <div class="card intro-card">
                 <img src="t1.png.jpeg" width="500" alt="封面圖" class="topPhoto" />
                 <h3>死亡擱淺</h3>
                 <p>作者 ／ 小島秀夫<br/>出版社 ／ 旗標出版<br/>出版日期 ／ 2023/11/30<br/>商品語言 ／ 中文<br/>級別 ／ 保護級<br/>定價 ／ NT$ 1,080</p>
@@ -209,8 +212,8 @@
                     navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
                     pagination: { el: '.swiper-pagination', clickable: true }
                 });
-            }, 500);
-        }, 1500);
+            }, 300);
+        }, 1300);
     });
     </script>
 </body>

@@ -184,10 +184,10 @@ nav ul li a:hover {
 /* 卡片基礎樣式 */
 .card {
     background: #fff;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding: 1rem;
-    margin: 1rem 0;
+    padding: 5rem;
+    margin: 1rem 0 4rem 0;
 }
 /* 個人介紹卡片布局 */
 .intro-card {
@@ -209,6 +209,23 @@ nav ul li a:hover {
     border-radius: 250%;
     margin-right: 1rem;
     margin-bottom: 1rem;
+}
+.project-card {
+    position: relative;
+}
+
+.swiper-pagination {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+}
+
+.swiper {
+    position: relative; /* 確保分頁點可相對定位 */
+    padding-bottom: 40px;
 }
 /* 技能圖示列表 */
 .skills-list i {

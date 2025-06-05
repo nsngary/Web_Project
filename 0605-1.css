@@ -1,0 +1,414 @@
+@charset "utf-8";
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+HTML5 display-role reset for older browsers
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+    font-family: cwtexfangsong;
+    font-family: NotoSansTC;
+
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap');
+@import url('htt://fonts.googleapis.com/earlyaccess/cwtexfangsong.css');
+
+/*仿宋體*/
+@font-face {
+    font-family: NotoSansTC;
+    src: url(./NotoSansTC-VariableFont_wght.ttf);
+}
+
+header {
+    background-color: #c4c4c4;
+    width: 100%;
+    padding: 1rem;
+    line-height: 1.75rem;
+}
+
+h1 {
+    text-align: left;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+h2 {
+    margin-top: 1.2rem;
+    text-align: left;
+    font-weight: bolder;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+nav {
+    background-color: #e0e0e0;
+    /* padding: 1rem; */
+}
+
+nav ul {
+    display: flex;
+    padding-left: 1rem;
+    list-style-type: none;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #666;
+    display: block;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+}
+
+nav ul li a:hover {
+    color: rgb(166, 114, 45);
+    background-color: darkgrey;
+    background: linear-gradient(to right, #e0e0e0, darkgrey);
+}
+
+section.container {
+    display: flex;
+    margin-top: 1rem;
+}
+
+section.left {
+    padding: 1rem;
+    ;
+}
+
+section.right {
+    padding: 1rem;
+    ;
+}
+
+section.right h5 {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.25rem;
+}
+
+section.right iframe {
+    margin-top: 1rem;
+    border-radius: 10%;
+    /* /* border-color: #666; */
+    border: #666 solid 1px;
+}
+
+.pic {
+    margin-top: 1rem;
+}
+
+.form {
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+}
+
+.map {
+    position: relative;
+    width: 100%;
+    padding-bottom: 80%;
+    height: 0;
+    overflow: hidden;
+}
+
+.map iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    border: 0;
+}
+
+.frame {
+    position: relative;
+    /* top: 50%;
+    left: 50%; */
+    width: 400px;
+    height: 400px;
+    /* margin-top: -200px; */
+    /* margin-left: -200px; */
+    border-radius: 2px;
+    /* box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.3); */
+    overflow: hidden;
+    /* background: #666; */
+    background: #666;
+    font-size: 0;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.line {
+    width: 225px;
+    height: 2px;
+    background: #fff;
+    margin: 15px 0;
+    animation: line .6s ease-out both;
+}
+
+.text {
+    stroke: darkgray;
+    stroke-dasharray: 270;
+    stroke-dashoffset: 0;
+
+    .a1 {
+        fill: #fff;
+        stroke-width: 6;
+        animation: fill 0.5s ease-in-out both;
+    }
+
+    .a2 {
+        fill: none;
+        stroke-width: 12;
+        animation: fill 0.5s ease-in-out both;
+    }
+
+    .a3 {
+        fill: none;
+        stroke-width: 18;
+        animation: fill 1s ease-in-out both;
+    }
+
+}
+
+@keyframes fill {
+    from {
+        stroke-dashoffset: 0;
+    }
+
+    to {
+        stroke-dashoffset: 270;
+    }
+}
+
+@keyframes line {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+body{
+    background-color: darkgray;
+    
+}
+/* #welcome {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+} */
+
+#welcome {
+  position:fixed;
+  top: 25%;
+  left: 35%;
+  width: 25vw;
+  height: 25vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: darkgray; 
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease-out, visibility 1s ease-out;
+  overflow: hidden;
+}
+
+
+.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+#main-content {
+    display: none;
+    opacity: 0;
+    /* transition: opacity 1s ease-in; */
+}
+
+
+#main-content.fade-in {
+    display: block;
+    opacity: 1;
+    transition: opacity 1s ease-in;
+}
+#contentR {
+	margin-left: 245px;
+	width: 555px;
+}
+#contentMain {
+	line-height: 1.5em;
+	padding-right: 40px;
+}
+.floatleft {
+	float: left;
+	margin-right: 15px;
+}
+.clearboth {
+	clear: both;
+}
+.floatright {
+	float: right;
+}
+#bookdata {
+    margin-top: 20px;
+    line-height: 1.5em;
+}
+img {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+iframe {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

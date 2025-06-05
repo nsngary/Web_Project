@@ -1,0 +1,217 @@
+<!-- aboutme.html：個人履歷網頁 -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>我的個人履歷</title>
+    <!-- 引入主要樣式表 -->
+    <link rel="stylesheet" href="0605_1.css" />
+    <!-- 引入圖示字型 (台灣icon 和 FontAwesome) -->
+    <link rel="stylesheet" href="./twicon/twicon.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <!-- 網站圖示 -->
+    <link rel="shortcut icon" href="./images/taiwanIcon.png" />
+    <link rel="bookmark" href="./images/taiwanIcon.png" />
+    <!-- 引入 jQuery 與 Swiper.js 插件 -->
+    <script src="jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+</head>
+<body>
+    <!-- 進入畫面動畫區塊 -->
+    <div class="frame" id="welcome">
+        <div class="center">
+            <div class="line"></div>
+            <!-- Welcome SVG 動畫文字 -->
+            <svg width="224" height="53" viewBox="0 0 224 53" class="text">
+                <path d="M43.4389648,51.4819336 L29.6757812,51.4819336 L29.6757812,30.8198242 L13.7631836,30.8198242 L13.7631836,51.4819336 L0,51.4819336 L0,0.797363281 L13.7631836,0.797363281 L13.7631836,19.5874023 L29.6757812,19.5874023 L29.6757812,0.797363281 L43.4389648,0.797363281 L43.4389648,51.4819336 Z M84.4858398,51.4819336 L54.394043,51.4819336 L54.394043,0.797363281 L84.4858398,0.797363281 L84.4858398,11.7871094 L68.0878906,11.7871094 L68.0878906,19.7607422 L83.2724609,19.7607422 L83.2724609,30.7504883 L68.0878906,30.7504883 L68.0878906,40.3188477 L84.4858398,40.3188477 L84.4858398,51.4819336 Z M93.3608398,51.4819336 L93.3608398,0.797363281 L107.054688,0.797363281 L107.054688,40.4228516 L126.572754,40.4228516 L126.572754,51.4819336 L93.3608398,51.4819336 Z M134.685059,51.4819336 L134.685059,0.797363281 L148.378906,0.797363281 L148.378906,40.4228516 L167.896973,40.4228516 L167.896973,51.4819336 L134.685059,51.4819336 Z M223.435059,26.0703125 C223.435059,34.5986755 221.343445,41.0815208 217.160156,45.519043 C212.976867,49.9565652 206.852254,52.175293 198.786133,52.175293 C190.835572,52.175293 184.739849,49.9450093 180.498779,45.484375 C176.25771,41.0237407 174.137207,34.5293395 174.137207,26.0009766 C174.137207,17.565062 176.246154,11.1226622 180.464111,6.67358398 C184.682069,2.22450575 190.81246,0 198.855469,0 C206.92159,0 213.034647,2.20717194 217.194824,6.62158203 C221.355001,11.0359921 223.435059,17.5188375 223.435059,26.0703125 L223.435059,26.0703125 Z M188.559082,26.0703125 C188.559082,35.8698407 191.968065,40.7695312 198.786133,40.7695312 C202.252947,40.7695312 204.824129,39.5792762 206.499756,37.1987305 C208.175383,34.8181847 209.013184,31.1087492 209.013184,26.0703125 C209.013184,21.0087638 208.163827,17.2704385 206.465088,14.8552246 C204.766349,12.4400107 202.229835,11.2324219 198.855469,11.2324219 C191.991177,11.2324219 188.559082,16.178336 188.559082,26.0703125 L188.559082,26.0703125 Z"
+                    class="a1"></path>
+                <path
+                    d="M43.4389648,51.4819336 L29.6757812,51.4819336 L29.6757812,30.8198242 L13.7631836,30.8198242 L13.7631836,51.4819336 L0,51.4819336 L0,0.797363281 L13.7631836,0.797363281 L13.7631836,19.5874023 L29.6757812,19.5874023 L29.6757812,0.797363281 L43.4389648,0.797363281 L43.4389648,51.4819336 Z M84.4858398,51.4819336 L54.394043,51.4819336 L54.394043,0.797363281 L84.4858398,0.797363281 L84.4858398,11.7871094 L68.0878906,11.7871094 L68.0878906,19.7607422 L83.2724609,19.7607422 L83.2724609,30.7504883 L68.0878906,30.7504883 L68.0878906,40.3188477 L84.4858398,40.3188477 L84.4858398,51.4819336 Z M93.3608398,51.4819336 L93.3608398,0.797363281 L107.054688,0.797363281 L107.054688,40.4228516 L126.572754,40.4228516 L126.572754,51.4819336 L93.3608398,51.4819336 Z M134.685059,51.4819336 L134.685059,0.797363281 L148.378906,0.797363281 L148.378906,40.4228516 L167.896973,40.4228516 L167.896973,51.4819336 L134.685059,51.4819336 Z M223.435059,26.0703125 C223.435059,34.5986755 221.343445,41.0815208 217.160156,45.519043 C212.976867,49.9565652 206.852254,52.175293 198.786133,52.175293 C190.835572,52.175293 184.739849,49.9450093 180.498779,45.484375 C176.25771,41.0237407 174.137207,34.5293395 174.137207,26.0009766 C174.137207,17.565062 176.246154,11.1226622 180.464111,6.67358398 C184.682069,2.22450575 190.81246,0 198.855469,0 C206.92159,0 213.034647,2.20717194 217.194824,6.62158203 C221.355001,11.0359921 223.435059,17.5188375 223.435059,26.0703125 L223.435059,26.0703125 Z M188.559082,26.0703125 C188.559082,35.8698407 191.968065,40.7695312 198.786133,40.7695312 C202.252947,40.7695312 204.824129,39.5792762 206.499756,37.1987305 C208.175383,34.8181847 209.013184,31.1087492 209.013184,26.0703125 C209.013184,21.0087638 208.163827,17.2704385 206.465088,14.8552246 C204.766349,12.4400107 202.229835,11.2324219 198.855469,11.2324219 C191.991177,11.2324219 188.559082,16.178336 188.559082,26.0703125 L188.559082,26.0703125 Z"
+                    class="a2"></path>
+                <path
+                    d="M43.4389648,51.4819336 L29.6757812,51.4819336 L29.6757812,30.8198242 L13.7631836,30.8198242 L13.7631836,51.4819336 L0,51.4819336 L0,0.797363281 L13.7631836,0.797363281 L13.7631836,19.5874023 L29.6757812,19.5874023 L29.6757812,0.797363281 L43.4389648,0.797363281 L43.4389648,51.4819336 Z M84.4858398,51.4819336 L54.394043,51.4819336 L54.394043,0.797363281 L84.4858398,0.797363281 L84.4858398,11.7871094 L68.0878906,11.7871094 L68.0878906,19.7607422 L83.2724609,19.7607422 L83.2724609,30.7504883 L68.0878906,30.7504883 L68.0878906,40.3188477 L84.4858398,40.3188477 L84.4858398,51.4819336 Z M93.3608398,51.4819336 L93.3608398,0.797363281 L107.054688,0.797363281 L107.054688,40.4228516 L126.572754,40.4228516 L126.572754,51.4819336 L93.3608398,51.4819336 Z M134.685059,51.4819336 L134.685059,0.797363281 L148.378906,0.797363281 L148.378906,40.4228516 L167.896973,40.4228516 L167.896973,51.4819336 L134.685059,51.4819336 Z M223.435059,26.0703125 C223.435059,34.5986755 221.343445,41.0815208 217.160156,45.519043 C212.976867,49.9565652 206.852254,52.175293 198.786133,52.175293 C190.835572,52.175293 184.739849,49.9450093 180.498779,45.484375 C176.25771,41.0237407 174.137207,34.5293395 174.137207,26.0009766 C174.137207,17.565062 176.246154,11.1226622 180.464111,6.67358398 C184.682069,2.22450575 190.81246,0 198.855469,0 C206.92159,0 213.034647,2.20717194 217.194824,6.62158203 C221.355001,11.0359921 223.435059,17.5188375 223.435059,26.0703125 L223.435059,26.0703125 Z M188.559082,26.0703125 C188.559082,35.8698407 191.968065,40.7695312 198.786133,40.7695312 C202.252947,40.7695312 204.824129,39.5792762 206.499756,37.1987305 C208.175383,34.8181847 209.013184,31.1087492 209.013184,26.0703125 C209.013184,21.0087638 208.163827,17.2704385 206.465088,14.8552246 C204.766349,12.4400107 202.229835,11.2324219 198.855469,11.2324219 C191.991177,11.2324219 188.559082,16.178336 188.559082,26.0703125 L188.559082,26.0703125 Z"
+                    class="a3"></path>
+            </svg>
+            <div class="line"></div>
+        </div>
+    </div>
+    <!-- 回頂按鈕與滾動事件腳本 -->
+    <script>
+    $(function () {
+        // 動態加入回到頂端的按鈕圖像
+        $("body").append("<img id='goTopButton' style='display:none; z-index:5; cursor:pointer;' title='回到頂端'>");
+        var img = "./image.png",            // 按鈕圖像路徑
+            location = 0.7, right = 80,     // 按鈕垂直位置 (視窗高度的%), 與右側距離(px)
+            opacity = 0.6, speed = 800,
+            $button = $("#goTopButton"),
+            $body = $(document),
+            $win = $(window);
+        $button.attr("src", img);
+        // 捲動時顯示或隱藏按鈕
+        window.goTopMove = function () {
+            var scrollH = $body.scrollTop(),
+                winH = $win.height(),
+                css = { "top": winH * location + "px", "position": "fixed", "right": right, "opacity": opacity };
+            if (scrollH > 20) {
+                $button.css(css);
+                $button.fadeIn("slow");
+            } else {
+                css = { "transform": "none", "transition": "none" };
+                $button.css(css);
+                $button.fadeOut("slow");
+            }
+        };
+        $win.on({
+            scroll: function () { goTopMove(); },
+            resize: function () { goTopMove(); }
+        });
+        // 滑鼠交互效果與點擊回頂
+        $button.on({
+            mouseover: function () { $button.css("opacity", 1); },
+            mouseout: function () { $button.css("opacity", opacity); },
+            click: function () {
+                css = { "transform": "rotate(+720deg)", "transition": "transform 0.5s ease-in-out 0s" };
+                $button.css(css);
+                $("html, body").animate({ scrollTop: 0 }, speed);
+            }
+        });
+    });
+    </script>
+    <!-- 主要內容區 -->
+    <div id="main-content">
+        <header>
+            <h1><i class="twicon-main-island"></i>台灣經濟發展歷史</h1>
+            <p>過去70年台灣經濟發展的歷史以及相關政策</p>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="./0605-1.html"><i class="twicon-president-office"></i>首頁</a></li>
+                <li><a href="./0605-agriculture.html"><i class="twicon-taiwan-rw"></i>農業改革</a></li>
+                <li><a href="./0605-industrazilation.html"><i class="twicon-cks-hall"></i>工業改革</a></li>
+                <li><a href="./0605-economy.html"><i class="twicon-l-youbike"></i>經濟起飛</a></li>
+                <li><a href="./about_me.html"><i class="twicon-slipper"></i>關於作者</a></li>
+            </ul>
+        </nav>
+        <!-- 個人介紹資訊卡片 -->
+        <section class="intro-section">
+            <div class="card intro-card">
+                <!-- 個人頭像 -->
+                <img src="./image/F62BDCEC-409B-4584-895D-96D3EAB33803.jpg" alt="Profile Photo" class="profile-pic" />
+                <!-- 個人文字資訊 -->
+                <div>
+                    <h2>陳重光 Gary Chen</h2>
+                    <p>熱愛程式，喜歡學習新技術並應用於專案開發。擁有良好的團隊合作精神和解決問題的能力。</p>
+                    <h3>技能 Skills</h3>
+                    <p class="skills-list">
+                        <i class="fab fa-html5"></i>
+                        <i class="fab fa-css3-alt"></i>
+                        <i class="fab fa-js-square"></i>
+                        <i class="fab fa-python"></i>
+                    </p>
+                    <h3>學習進度 Learning</h3>
+                    <p>Python</p>
+                    <div class="skill-bar"><div class="fill" style="width: 70%;">70%</div></div>
+                    <p>前端</p>
+                    <div class="skill-bar"><div class="fill" style="width: 85%;">85%</div></div>
+                    <p>人工智慧 AI</p>
+                    <div class="skill-bar"><div class="fill" style="width: 50%;">50%</div></div>
+                    <p>
+                        <a href="https://github.com/yourname" target="_blank" class="social-btn"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://www.linkedin.com/in/yourname" target="_blank" class="social-btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- 專案作品輪播區塊 -->
+        <section class="projects-section">
+            <h2>專案作品 Portfolio</h2>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <!-- 專案 Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="card project-card">
+                            <img src="project1.jpg" alt="Project 1 Screenshot" />
+                            <h3>專案一：網站設計</h3>
+                            <p>此專案為一個響應式網站，包括首頁、關於頁和聯絡表單，使用HTML/CSS/JS開發。</p>
+                            <div class="skill-bar"><div class="fill" style="width: 80%;">80%</div></div>
+                            <p>開發進度：80%</p>
+                        </div>
+                    </div>
+                    <!-- 專案 Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="card project-card">
+                            <img src="project2.jpg" alt="Project 2 Screenshot" />
+                            <h3>專案二：資料分析</h3>
+                            <p>使用 Python 製作的資料分析專案，透過圖表視覺化呈現商業數據，提供決策參考。</p>
+                            <div class="skill-bar"><div class="fill" style="width: 60%;">60%</div></div>
+                            <p>開發進度：60%</p>
+                        </div>
+                    </div>
+                    <!-- 專案 Slide 3 -->
+                    <div class="swiper-slide">
+                        <div class="card project-card">
+                            <img src="project3.jpg" alt="Project 3 Screenshot" />
+                            <h3>專案三：行動應用</h3>
+                            <p>一款採用 React Native 開發的行動應用程式，可在 iOS/Android 裝置上順暢運行。</p>
+                            <div class="skill-bar"><div class="fill" style="width: 90%;">90%</div></div>
+                            <p>開發進度：90%</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Swiper 分頁圓點及導航箭頭 -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </section>
+        <!-- 原有內容區塊，轉為卡片樣式呈現 -->
+        <section class="about-section">
+            <div class="card">
+                <img src="t1.png.jpeg" width="500" alt="封面圖" class="topPhoto" />
+                <h3>死亡擱淺</h3>
+                <p>作者 ／ 小島秀夫<br/>出版社 ／ 旗標出版<br/>出版日期 ／ 2023/11/30<br/>商品語言 ／ 中文<br/>級別 ／ 保護級<br/>定價 ／ NT$ 1,080</p>
+                <h1>分崩離析的世界</h1>
+                <p>在這個充滿挑戰的世界中，我們需要重新連結彼此，建立更深的理解與共鳴。透過這個過程，我們將一起探索人類的情感與經歷，尋找那些能夠觸動心靈的故事。</p>
+                <p><img src="./image/2.jpeg" width="300" alt="" class="floatleft" />扮演「送貨員」，在這個被「死亡擱淺」影響而撕裂的世界。玩家將從新美國東岸的「主結市」出發一路向西岸前進。</p>
+                <div class="clearboth"></div>
+                <h2>重新連結這破碎世界的旅程</h2>
+                <p><img src="./image/3.jpeg" width="300" alt="" class="floatleft" />在路上除了運送物資給各個據點，還要讓各地連上「開若爾網路」以便聯繫及取得周遭的資訊。</p>
+                <div class="clearboth"></div>
+                <p><img src="./image/4.jpeg" width="300" alt="" class="floatright" />有一種敵人被稱呼為「BT」，意為「擱淺體」。BT只會在降下「時間雨」（Time Fall）時出現，且沒有實體。</p>
+                <div class="clearboth"></div>
+            </div>
+        </section>
+    </div>
+    <!-- 載入完畢後的動畫與輪播初始化腳本 -->
+    <script>
+    window.addEventListener('load', () => {
+        const welcome = document.getElementById('welcome');
+        const main = document.getElementById('main-content');
+        // 延時淡出歡迎畫面、淡入主內容
+        setTimeout(() => {
+            welcome.style.transition = 'opacity 0.5s ease-out, visibility 1s ease-out';
+            welcome.style.opacity = '0';
+            welcome.style.visibility = 'hidden';
+            setTimeout(() => {
+                welcome.style.display = 'none';
+                main.style.display = 'block';
+                main.style.opacity = '0';
+                // 主內容淡入
+                requestAnimationFrame(() => {
+                    main.style.transition = 'opacity 0.5s ease-in';
+                    main.style.opacity = '1';
+                });
+                // 初始化 Swiper 輪播
+                var mySwiper = new Swiper('.swiper', {
+                    loop: true,
+                    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                    pagination: { el: '.swiper-pagination', clickable: true }
+                });
+            }, 500);
+        }, 1500);
+    });
+    </script>
+</body>
+</html>

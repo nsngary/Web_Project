@@ -1,0 +1,433 @@
+/* 0605_1.css：主要樣式表（包含原有樣式和新增樣式） */
+@charset "utf-8";
+/* CSS Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+    font-family: "NotoSansTC", sans-serif;
+    background-color: #f0f0f0;  /* 柔和背景色 */
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote::before, blockquote::after,
+q::before, q::after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/* 字體載入 (繁體字型) */
+@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap');
+@font-face {
+    font-family: NotoSansTC;
+    src: url(./NotoSansTC-VariableFont_wght.ttf);
+}
+/* 頁首標題區 */
+header {
+    background-color: #c4c4c4;
+    width: 100%;
+    padding: 1rem;
+    line-height: 1.75rem;
+    /* 取消預設的透明設定，預設完全不透明，透過 JS 動態改變 */
+}
+h1 {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+header p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+}
+/* 導覽選單 */
+nav {
+    background-color: #e0e0e0;
+}
+nav ul {
+    display: flex;
+    justify-content: center;
+    padding-left: 1rem;
+}
+nav ul li a {
+    display: block;
+    text-decoration: none;
+    color: #666;
+    padding: 0.75rem 1rem;
+}
+nav ul li a:hover {
+    color: rgb(166, 114, 45);
+    background: linear-gradient(to right, #e0e0e0, darkgrey);
+}
+/* 新增：頂部容器 (Header + Nav) 動畫樣式 */
+#top-bar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    opacity: 0;                      /* 初始隱藏透明 */
+    transform: translateY(-100%);    /* 初始從畫面上方移出 */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+/* 主要容器排版 */
+#main-content {
+    display: flex;
+    /* flex-direction: row;
+    flex-wrap: wrap;
+    flex-flow: row;
+    justify-content: center;
+    align-items: stretch;
+    align-content: stretch; */
+
+    opacity: 0;
+    max-width: 80%;       /* 最大寬度限制，置中 */
+    margin: 2rem auto;
+    padding: 1rem;
+    padding-right: 100px;
+}
+#main-content.fade-in {
+    display: block;
+    opacity: 1;
+    transition: opacity 1s ease-in;
+}
+/* Welcome 動畫區塊樣式 */
+.frame {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    border-radius: 2px;
+    background: #666;
+    font-size: 0;
+    overflow: hidden;
+}
+#welcome {
+    position: fixed;
+    top: 25%;
+    left: 35%;
+    width: 25vw;
+    height: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: darkgray;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+}
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.line {
+    width: 225px;
+    height: 2px;
+    background: #fff;
+    margin: 15px 0;
+    animation: line .6s ease-out both;
+}
+.text {
+    stroke: darkgray;
+    stroke-dasharray: 270;
+    stroke-dashoffset: 0;
+}
+.text .a1 {
+    fill: #fff;
+    stroke-width: 6;
+    animation: fill 0.5s ease-in-out both;
+}
+.text .a2 {
+    fill: none;
+    stroke-width: 12;
+    animation: fill 0.5s ease-in-out both;
+}
+.text .a3 {
+    fill: none;
+    stroke-width: 18;
+    animation: fill 1s ease-in-out both;
+}
+@keyframes fill {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: 270; }
+}
+@keyframes line {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+/* 回頂按鈕圖片可加上轉場 (載入時隱藏已在行內CSS設定) */
+#goTopButton {
+    position: fixed;
+    bottom: 20px;
+    /* right: calc((100% - 80%) / 5);  */
+    right: 100px;
+    margin-right: calc((100% - 80%) / 8.2);
+    margin-bottom: calc((100% - 80%) / 10);
+    width: 10%;
+    z-index: 998;
+}
+/* 浮動工具類 */
+.floatleft { float: left; margin-right: 15px; }
+.floatright { float: right; margin-left: 15px; }
+.clearboth { clear: both; }
+#bookdata, .about-section p {
+    margin-top: 1rem;
+    line-height: 1.5em;
+}
+/* 新增卡片及排版樣式 */
+/* 卡片基礎樣式 */
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 0px rgba(0,0,0,0.1);
+    padding: 5rem;
+    margin: 1rem 0 8rem 0;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    /* 新增：卡片不在多欄中拆分，添加轉場效果 */
+    /* /* break-inside: avoid; */
+    -webkit-column-break-inside: avoid; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+/* 個人介紹卡片布局 */
+.intro-card {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.intro-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.intro-card h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0.25rem;
+    font-weight: bold;
+}
+.profile-pic {
+    width: 150px;
+    border-radius: 250%;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+.project-card {
+    position: relative;
+}
+.swiper-pagination {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+}
+.swiper {
+    position: relative; /* 確保分頁點可相對定位 */
+    padding-bottom: 40px;
+}
+/* 技能圖示列表 */
+.skills-list i {
+    font-size: 1.5rem;
+    margin: 0 0.5rem 0.5rem 0;
+    color: #666;
+}
+/* 技能/進度 條 */
+.skill-bar {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin: 0.5rem 0;
+}
+.fill {
+    display: block;
+    background-color: #2196F3;
+    color: #fff;
+    text-align: right;
+    padding: 5px;
+}
+/* 社群連結按鈕 */
+.social-btn {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    margin: 0.5rem 0.5rem 0 0;
+    background: #e0e0e0;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #000;
+    /* 新增：按鈕過渡效果 */
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.social-btn:hover {
+    background: #d0d0d0;
+    /* 新增：按鈕放大與陰影效果 */
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+/* 專案作品區標題置中 */
+.projects-section h2 {
+    text-align: center;
+    margin: 1rem 0;
+}
+/* 專案卡片內圖片 */
+.project-card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.project-card video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.swiper-wrapper {
+    line-height: 1.5rem;
+}
+/* 卡片和按鈕懸停效果 */
+.card:hover {
+    /* 懸停時卡片微升且陰影變大 */
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+/* 響應式 Masonry 交錯卡片排版 */
+@media (min-width: 768px) {
+    #main-content {
+        column-count: 1;
+        column-gap: 1rem;
+    }
+}
+/* 響應式調整：小螢幕下個人介紹卡片垂直排列 */
+@media (max-width: 800px) {
+    .intro-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .profile-pic {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    .side-nav-list{
+        /* font-size: 1rem; */
+        font-size: clamp(0.3rem, 1.5vw, 1.2rem); 
+    }
+    .side-nav-link i,
+    .material-symbols-outlined {
+        font-size: clamp(0.3rem, 1.5vw, 1.2rem);  /* 隨父層字體大小變動 */
+        vertical-align: middle;
+}
+}
+@media (max-width: 768px) {
+    .side-fixed-menu {
+        display: none;
+    }
+    #main-content {
+        padding-right: 1rem;
+    }
+    #goTopButton {
+        right: calc((100% - 80%) / 5 ); 
+        width: 10%;
+    }
+}
+.intro-card img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+/* ✅ 側邊導覽主容器 */
+.side-fixed-menu {
+  position: fixed;
+  top: 20%;
+  right: calc((100% - 80%) / 5 ); /* 置中於卡片右邊與瀏覽器右緣之間 */
+  transform: translateY(-50%);
+  max-width: 200px;
+  background: transparent;
+  opacity: 0;
+  border-radius: 8px;
+  padding: 15px 15px;
+  z-index: 999;
+}
+
+/* ✅ 導覽清單樣式 */
+.side-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 100;
+}
+
+/* ✅ 每個選項項目 */
+.side-nav-list li {
+  margin: 20px 0;
+}
+
+/* ✅ 連結樣式與 hover 效果 */
+.side-nav-link {
+  text-decoration: none;
+  font-weight: bold;
+  color: rgba(66,66,66,0.5);
+  transition: color 0.3s ease;
+  display: inline-block;
+}
+
+.side-nav-link:hover {
+  color: rgb(166,114,45);
+  /* font-size: larger; */
+  text-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* ✅ 動畫用 class（來自 animate.css） */
+.animate__animated {
+  animation-duration: 1s;
+  animation-delay: 0.3s;
+}
+#about {
+    scroll-margin-top: 80rem;
+}
+#project {
+    scroll-margin-top: 1000px;
+}
+
+/* .material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 200,
+  'GRAD' 0,
+  'opsz' 24
+} */
+.material-symbols-outlined {
+    color: rgba(66,66,66,0.5);
+}

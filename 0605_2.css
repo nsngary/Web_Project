@@ -97,7 +97,7 @@ nav ul li a:hover {
     z-index: 100;
     opacity: 0;                      /* 初始隱藏透明 */
     transform: translateY(-100%);    /* 初始從畫面上方移出 */
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 /* 主要容器排版 */
 #main-content {
@@ -412,7 +412,7 @@ nav ul li a:hover {
 /* ✅ 動畫用 class（來自 animate.css） */
 .animate__animated {
   animation-duration: 1s;
-  animation-delay: 0.3s;
+  animation-delay: 1.5s;
 }
 #about {
     scroll-margin-top: 80rem;
@@ -430,4 +430,8 @@ nav ul li a:hover {
 } */
 .material-symbols-outlined {
     color: rgba(66,66,66,0.5);
+}
+.animate__fadeOutUp {
+    animation-duration: 1s;
+    animation-delay: 0.8s;
 }

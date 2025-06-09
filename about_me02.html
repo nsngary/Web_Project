@@ -29,7 +29,7 @@
 
 <body>
     <!-- 進入畫面動畫區塊 -->
-    <div class="frame" id="welcome">
+    <div class="frame animate__fadeOutUp" id="welcome">
         <div class="center">
             <div class="line"></div>
             <!-- Welcome SVG 動畫文字 -->
@@ -52,7 +52,7 @@
 
     <!-- 主要內容區（含頁首和導覽） -->
     <!-- 新增頂部容器 (top-bar)，包含 header 和 nav -->
-    <div id="top-bar">
+    <div id="top-bar" class="animate__fadeInLeft">
         <header>
             <h1><i class="twicon-main-island"></i>台灣經濟發展歷史</h1>
             <p>過去70年台灣經濟發展的歷史以及相關政策</p>
@@ -312,7 +312,7 @@
     <script>
         $(function () {
             // 動態加入回到頂端的按鈕圖像
-            $("body").append("<img id='goTopButton' style='display:none; z-index:5; cursor:pointer;' title='回到頂端'>");
+            $("body").append("<img id='goTopButton' style='display:none; z-index:5; cursor:pointer;' title='回到頂端'> class='animate__bounceOutUp'");
             var img = "./image.png",            // 按鈕圖像路徑
                 location = 0.7, right = 30,     // 按鈕垂直位置 (視窗高度的%), 與右側距離(px)
                 opacity = 0.6, speed = 800,

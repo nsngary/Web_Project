@@ -1,65 +1,77 @@
 // 當頁面載入完成後執行新的功能
 window.addEventListener('load', () => {
-    // 延遲 1300ms（歡迎動畫約結束時）後，使 header 和 nav 的容器從上方滑入並淡入顯示
-    setTimeout(() => {
-        const topBar = document.getElementById('top-bar');
-        topBar.style.transform = 'translateY(0)';  // 解除上移偏移，滑入畫面
-        topBar.style.opacity = '1';               // 淡入呈現
-    }, 1300);
-
-    // 監聽窗口的滾動事件，動態調整頂部區域透明度
+    const welcome = document.getElementById('welcome');
+    const main = document.getElementById('main-content');
+    const topBar = document.getElementById('top-bar');
+    const sideMenu = document.querySelector('.side-fixed-menu');
+    
+    // 初始化時隱藏主要內容和頂部導航
+    main.style.display = 'block';
+    topBar.style.display = 'block';
+    
+    // 監聽滾動事件
+    let hasScrolled = false;
     window.addEventListener('scroll', () => {
-        const topBar = document.getElementById('top-bar');
-        const scrollPosition = window.pageYOffset;
-        const headerHeight = topBar.offsetHeight;
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const mainContent = document.querySelector('.card');
         
-        if (scrollPosition > 0) {
-            // 計算透明度，隨著滾動距離增加而降低，但不低於 0.3
-            const opacity = Math.max(0.5, 1 - (scrollPosition / (headerHeight * 2)));
-            // 計算位移，最多向上移動一半的高度
-            const translateY = Math.min(-headerHeight / 1.45);
+        if (mainContent) {
+            const mainRect = mainContent.getBoundingClientRect();
+            const topBarHeight = topBar.offsetHeight*1.5;
             
-            topBar.style.transform = `translateY(${translateY}px)`;
+            // 當 top-bar 接近 main-content 時縮小
+            if (mainRect.top <= topBarHeight * 0.5) {
+                topBar.classList.add('compact');
+            } else {
+                topBar.classList.remove('compact');
+            }
+        }
+
+        // 當滾動超過視窗高度時顯示 top-bar
+        if (scrollPosition > windowHeight * 0.8 && !hasScrolled) {
+            topBar.classList.add('visible');
+            hasScrolled = true;
+        } else if (scrollPosition <= windowHeight * 0.8 && hasScrolled) {
+            topBar.classList.remove('visible');
+            hasScrolled = false;
+        }
+        
+        // 調整頂部導航的透明度
+        if (scrollPosition > windowHeight * 0.8) {
+            const opacity = Math.max(0.5, 1 - ((scrollPosition - windowHeight * 0.8) / (topBar.offsetHeight * 2)));
             topBar.style.opacity = opacity;
         } else {
-            // 回到頂部時恢復原狀
-            topBar.style.transform = 'translateY(0)';
-            topBar.style.opacity = '1';
+            topBar.style.opacity = '0';
+        }
+
+        if (scrollPosition > windowHeight * 0.8) {
+            const opacity =  Math.max(1, 1 - ((scrollPosition - windowHeight * 0.8) / (topBar.offsetHeight * 2)));
+            main.style.opacity = opacity;
+        } else {
+            main.style.opacity = '0';
+        }
+
+        if (scrollPosition > windowHeight * 0.8) {
+            const opacity =  Math.max(1, 1 - ((scrollPosition - windowHeight * 0.8) / (topBar.offsetHeight * 2)));
+            sideMenu.style.opacity = opacity;
+        } else {
+            sideMenu.style.opacity = '0';
         }
     });
 
-    // 歡迎動畫與主內容切換
-    const welcome = document.getElementById('welcome');
-    const main = document.getElementById('main-content');
-    
-    setTimeout(() => {
-        // 修改為原地淡出效果
-        welcome.style.transition = 'opacity 1s ease-out';
-        welcome.style.opacity = '0';
-        
-        setTimeout(() => {
-            welcome.style.display = 'none';
-            main.style.display = 'block';
-            main.style.opacity = '0';
-            requestAnimationFrame(() => {
-                main.style.transition = 'opacity 0.5s ease-in';
-                main.style.opacity = '1';
-            });
-            
-            // 初始化 Swiper 輪播
-            const mySwiper = new Swiper('.swiper', {
-                loop: true,
-                navigation: { 
-                    nextEl: '.swiper-button-next', 
-                    prevEl: '.swiper-button-prev' 
-                },
-                pagination: { 
-                    el: '.swiper-pagination', 
-                    clickable: true 
-                }
-            });
-        }, 1000); // 延長等待時間，確保淡出動畫完成
-    }, 1000);
+    // 初始化 Swiper 輪播
+    const mySwiper = new Swiper('.swiper', {
+        loop: true,
+        navigation: { 
+            nextEl: '.swiper-button-next', 
+            prevEl: '.swiper-button-prev' 
+        },
+        pagination: { 
+            el: '.swiper-pagination', 
+            clickable: true 
+        }
+    });
 
     // 初始化 AOS
     AOS.init({
@@ -95,9 +107,9 @@ window.addEventListener('load', () => {
             const targetID = this.getAttribute('href').substring(1);
             const targetEl = document.getElementById(targetID);
             if (targetEl) {
-                const offsetY = -80; // header 高度補償
+                const offsetY = -80;
                 const y = targetEl.getBoundingClientRect().top + window.pageYOffset + offsetY;
-                smoothScrollTo(y, 800); // 調整捲動毫秒
+                smoothScrollTo(y, 800);
             }
         });
     });
@@ -107,15 +119,13 @@ window.addEventListener('load', () => {
 function initThemeSwitch() {
     const themeSwitch = document.createElement('button');
     themeSwitch.className = 'theme-switch';
-    themeSwitch.innerHTML = '<i class="fas fa-moon"></i>';
+    themeSwitch.innerHTML = '<i class="fas fa-sun"></i>';
     document.body.appendChild(themeSwitch);
 
-    // 檢查本地存儲中的主題設置
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        themeSwitch.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    }
+    // 檢查本地存儲中的主題設置，預設為暗黑模式
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeSwitch.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
 
     themeSwitch.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -162,55 +172,55 @@ function smoothScrollTo(targetY, duration = 800) {
 }
 
 // 回到頂端按鈕功能
-$(function () {
-    $("body").append("<img id='goTopButton' style='display:none; z-index:5; cursor:pointer;' title='回到頂端'>");
-    var img = "./image.png",
-        location = 0.8,
-        right = 30,
-        opacity = 0.6,
-        speed = 800,
-        $button = $("#goTopButton"),
-        $body = $(document),
-        $win = $(window);
+// $(function () {
+//     $("body").append("<img id='goTopButton' style='display:none; z-index:5; cursor:pointer;' title='回到頂端'>");
+//     var img = "./image.png",
+//         location = 0.8,
+//         right = 30,
+//         opacity = 0.6,
+//         speed = 800,
+//         $button = $("#goTopButton"),
+//         $body = $(document),
+//         $win = $(window);
 
-    $button.attr("src", img);
+//     $button.attr("src", img);
 
-    window.goTopMove = function () {
-        var scrollH = $body.scrollTop(),
-            winH = $win.height(),
-            css = { "top": winH * location + "px", "position": "fixed", "right": right, "opacity": opacity };
-        if (scrollH > 20) {
-            $button.css(css);
-            $button.fadeIn("slow");
-        } else {
-            css = { "transform": "none", "transition": "none" };
-            $button.css(css);
-            $button.fadeOut("slow");
-        }
-    };
+//     window.goTopMove = function () {
+//         var scrollH = $body.scrollTop(),
+//             winH = $win.height(),
+//             css = { "top": winH * location + "px", "position": "fixed", "right": right, "opacity": opacity };
+//         if (scrollH > 20) {
+//             $button.css(css);
+//             $button.fadeIn("slow");
+//         } else {
+//             css = { "transform": "none", "transition": "none" };
+//             $button.css(css);
+//             $button.fadeOut("slow");
+//         }
+//     };
 
-    $win.on({
-        scroll: function () { goTopMove(); },
-        resize: function () { goTopMove(); }
-    });
+//     $win.on({
+//         scroll: function () { goTopMove(); },
+//         resize: function () { goTopMove(); }
+//     });
 
-    $button.on({
-        mouseover: function () { $button.css("opacity", 1); },
-        mouseout: function () { $button.css("opacity", opacity); },
-        click: function () {
-            css = { "transform": "rotate(+720deg)", "transition": "transform 0.5s ease-in-out 0s" };
-            $button.css(css);
-            $("html, body").animate({ scrollTop: 0 }, speed);
-        }
-    });
-});
+//     $button.on({
+//         mouseover: function () { $button.css("opacity", 1); },
+//         mouseout: function () { $button.css("opacity", opacity); },
+//         click: function () {
+//             css = { "transform": "rotate(+720deg)", "transition": "transform 0.5s ease-in-out 0s" };
+//             $button.css(css);
+//             $("html, body").animate({ scrollTop: 0 }, speed);
+//         }
+//     });
+// });
 
 // 視差滾動效果
 document.addEventListener('scroll', () => {
     const parallaxElements = document.querySelectorAll('.parallax-section');
     parallaxElements.forEach(element => {
         const speed = element.dataset.speed || 0.5;
-        const yPos = -(window.pageYOffset * speed);
+        const yPos = -(window.scrollY * speed);
         element.style.transform = `translateY(${yPos}px)`;
     });
 });
@@ -246,8 +256,7 @@ function initThreeBackground() {
     
     // 根據主題設定粒子顏色
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const particleColor = isDark ? 0xA6722D : 0x2196F3;
-    
+    const particleColor =0xA6722D;
     const particleMaterial = new THREE.MeshBasicMaterial({ 
         color: particleColor,
         transparent: true,
